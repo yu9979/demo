@@ -1,0 +1,1 @@
+WARN  [2022-05-10 09:24:27,558][] com.baomidou.mybatisplus.core.toolkit.TableInfoHelper:280 - Warn: Could not find @TableId in Class: com.example.demo.entity.Bill. 
