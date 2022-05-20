@@ -5,11 +5,11 @@ import com.example.demo.entity.Bill;
 import com.example.demo.service.BillService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +22,7 @@ import java.util.List;
  * @author: wangjinyu
  * @date: 2022-04-13 15:35
  **/
+@Api(tags="账单信息")
 @RestController
 @RequestMapping("/api")
 @Slf4j
@@ -32,7 +33,9 @@ public class HomeController {
     private BillService billService;
 
     //http://localhost:8080/api/query?start=2021-02-07%2000:00:00&end=2021-03-07%2000:00:00
-    @RequestMapping("/query")
+    //@RequestMapping(value = "/query")
+    @ApiOperation(value = "账单查询")
+    @GetMapping(value = "/query")
     public List<Bill> queryList(@RequestParam("start") String start, @RequestParam("end") String end) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -57,7 +60,8 @@ public class HomeController {
     /**
      * 数据库分表场景下， 分页列表查询 示例
      */
-    @RequestMapping("/queryPage")
+    //@RequestMapping("/queryPage")
+    @GetMapping(value = "/queryPage")
     public PageInfo<Bill> queryPage(@RequestParam("start") String start,
                                     @RequestParam("end") String end,
                                     @RequestParam("pageNum") int pageNum,
